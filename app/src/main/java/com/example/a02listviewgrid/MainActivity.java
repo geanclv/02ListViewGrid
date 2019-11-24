@@ -3,8 +3,11 @@ package com.example.a02listviewgrid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +15,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private ListView lstViewMain;
+    private List<String> lstNombre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initComponents();
-
-        //Datos que se mostrarán en el ListView
-        List<String> lstNombre = initNamesList();
+        lstNombre = initNamesList();
 
         //Adaptador que llenará el ListView
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -29,18 +31,19 @@ public class MainActivity extends AppCompatActivity {
         //Enlazamos el ListView con el Adaptador
         lstViewMain.setAdapter(adapter);
 
+        //Click en el ListView
+        lstViewMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String nombre = lstNombre.get(position);
+                Toast.makeText(MainActivity.this, "Clic en: " + nombre,
+                        Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private List<String> initNamesList() {
         return new ArrayList<String>(){{
-            add("Geancarlo");
-            add("Alejandro");
-            add("Juan");
-            add("Jose");
-            add("Geancarlo");
-            add("Alejandro");
-            add("Juan");
-            add("Jose");
             add("Geancarlo");
             add("Alejandro");
             add("Juan");
