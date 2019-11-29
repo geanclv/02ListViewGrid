@@ -46,7 +46,7 @@ public class MyAdapter extends BaseAdapter {
         if (convertView == null) {
             //Inflando la vista con el layout creado (list_item)
             LayoutInflater layoutInflater = LayoutInflater.from(this.context);
-            convertView = layoutInflater.inflate(R.layout.list_item, null);
+            convertView = layoutInflater.inflate(this.layout, null);
 
             holder = new ViewHolder();
             //Agregando la referencia del textView al Holder
