@@ -39,21 +39,46 @@ public class MyAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        //Copiando la vista recibida para trabajarla
-        View view = convertView;
+        /*View Holder Pattern -> nos permite mejorar la performace debido a que almacena
+        * en cache las referencias*/
+        ViewHolder holder;
 
-        //Inflando la vista con el layout creado (list_item)
-        LayoutInflater layoutInflater = LayoutInflater.from(this.context);
-        view = layoutInflater.inflate(R.layout.list_item, null);
+        if (convertView == null) {
+            //Inflando la vista con el layout creado (list_item)
+            LayoutInflater layoutInflater = LayoutInflater.from(this.context);
+            convertView = layoutInflater.inflate(R.layout.list_item, null);
+
+            holder = new ViewHolder();
+            //Agregando la referencia del textView al Holder
+            holder.txtViewMain = convertView.findViewById(R.id.textView);
+
+            //llenando el holder
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        //Copiando la vista recibida para trabajarla
+        //View view = convertView;
 
         //Obtenemos el valor actual para mostrar
         String nombre = this.lstNombres.get(position);
 
         //Completando el textView del layout
-        TextView textView = view.findViewById(R.id.textView);
-        textView.setText(nombre);
+        //TextView textView = view.findViewById(R.id.textView);
+        //textView.setText(nombre);
+        holder.txtViewMain.setText(nombre);
 
         //Devolvemos la Vista inflada y modificada con nuestros datos
-        return view;
+        //return view;
+        return convertView;
+    }
+
+    //Clase ViewHolder
+    static class ViewHolder {
+        //atributos como los tiene mi layout a renderizar y el método getView del adaptador
+        private TextView txtViewMain;
+
+
     }
 }

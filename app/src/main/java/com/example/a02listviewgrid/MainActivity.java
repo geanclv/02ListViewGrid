@@ -28,10 +28,10 @@ public class MainActivity extends AppCompatActivity {
         lstNombre = initNamesList();
 
         //Adaptador que llenará el ListView
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, lstNombre);
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, lstNombre);*/
         //Enlazamos el ListView con el Adaptador
-        lstViewMain.setAdapter(adapter);
+        /*lstViewMain.setAdapter(adapter);*/
 
         //Click en el ListView
         lstViewMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -53,6 +53,15 @@ public class MainActivity extends AppCompatActivity {
     private List<String> initNamesList() {
         return new ArrayList<String>(){{
             add("Geancarlo");
+            add("Alejandro");
+            add("Juan");
+            add("Jose");add("Geancarlo");
+            add("Alejandro");
+            add("Juan");
+            add("Jose");add("Geancarlo");
+            add("Alejandro");
+            add("Juan");
+            add("Jose");add("Geancarlo");
             add("Alejandro");
             add("Juan");
             add("Jose");
